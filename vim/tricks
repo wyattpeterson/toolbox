@@ -1,9 +1,0 @@
-
-search hex:
-/\%x1b
-
-Show character under cursor
-set statusline=%<%f%h%m%r%=%b\ 0x%B\ \ %l,%c%V\ %P
-
-turn nbsp (0xA0) into space (0x20) after copy / paste from web:
-%s/\%xA0/ /g
