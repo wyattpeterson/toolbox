@@ -12,7 +12,7 @@ def install_dotfile(dotfile):
     toolbox = os.path.join(home, 'toolbox')
 
     print "Installing %s" % dotfile
-    destination = os.path.join(home, ".%s" % 'rawr')
+    destination = os.path.join(home, ".%s" % dotfile)
     shutil.copyfile(
         os.path.join(toolbox, "dotfiles", dotfile), 
         destination
