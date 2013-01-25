@@ -1,4 +1,7 @@
+execute pathogen#infect()
+
 syntax on
+
 
 highlight Search   ctermfg=NONE  ctermbg=magenta guifg=NONE    guibg=yellow
 
