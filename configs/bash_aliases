@@ -1,0 +1,80 @@
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# some more ls aliases
+alias ll='ls -alhF'
+alias la='ls -AF'
+alias l='ls -CF'
+
+#hadoop
+alias dfs='hadoop fs'
+alias hls='hadoop fs -ls'
+
+#misc
+alias gps='ps -ef | grep -v grep | grep'
+alias wis='whatis -w "*" | grep'
+alias lboot='last | grep boot'
+
+#version control
+alias svndv='svn diff | view -'
+alias gitdv='git diff | view -'
+alias gitst='git status'
+alias gitup='git pull'
+alias gitci='git commit -a'
+
+
+#######
+# Searchs through files recursively. faster than ack last I tested
+# example usage: fif php,py some_function
+######
+fif ()
+{
+    FTYPES="$1"
+    EXPRESSION="$2"
+    OPTIONS="$3"
+
+    if [ -z "$FTYPES" -o -z "$EXPRESSION" ]
+    then
+        echo "Usage: $0 filetype[,...] expression"
+        return 1
+    fi
+        
+    if [ -z "$OPTIONS" ]
+    then
+        OPTIONS="-Hni"
+    fi
+
+    FIND_ARGS=
+    for FTYPE in $(echo "$FTYPES" | sed -e 's|,| |g')
+    do
+        if [ -z "$FIND_ARGS" ]
+        then
+            FIND_ARGS="-iname *.$FTYPE"
+        else
+            FIND_ARGS="$FIND_ARGS -o -iname *.$FTYPE"
+        fi
+    done
+
+    set -f
+    find . '(' $FIND_ARGS ')' -exec grep --color "$OPTIONS" -e "$EXPRESSION" '{}' '+'
+    set +f
+}
+
+#######
+# Copy and pastes grep output to jump to the line number in VIM
+# Useful with fif
+######
+vig ()
+{
+    LOCATION=`echo $1 | awk -F ':' '{print \$2,$1}'`
+    vim +$LOCATION
+}

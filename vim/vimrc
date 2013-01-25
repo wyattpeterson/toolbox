@@ -1,0 +1,201 @@
+syntax on
+
+highlight Search   ctermfg=NONE  ctermbg=magenta guifg=NONE    guibg=yellow
+
+set noautoindent
+set autowrite
+set nobackup
+set nobinary
+
+set expandtab
+set noexrc
+set fileformat=unix
+set filetype=unix
+set hidden
+set hlsearch
+set ignorecase
+set incsearch
+set infercase
+set joinspaces
+set ruler
+set secure
+set shiftwidth=4
+set shortmess=at
+set number
+set noshowmatch
+set nosmartindent
+set smartcase
+set tabstop=4
+set textwidth=0
+set ttyfast
+set undolevels=200
+set viminfo=
+set wrapmargin=0
+set wrapscan
+set nowritebackup
+set matchpairs+=<:>
+set wildmode=list:full
+
+" Show character undercursor
+set statusline=%<%f%h%m%r%=%b\ 0x%B\ \ %l,%c%V\ %P
+" always show status line
+set laststatus=2
+
+
+" move blocks of code around
+nnoremap <C-j> :m+<CR>==
+nnoremap <C-k> :m-2<CR>==
+inoremap <C-j> <Esc>:m+<CR>==gi
+inoremap <C-k> <Esc>:m-2<CR>==gi
+vnoremap <C-j> :m'>+<CR>gv=gv
+vnoremap <C-k> :m-2<CR>gv=gv
+
+"turn off the obnoxious bell
+set noerrorbells novisualbell 
+autocmd VimEnter * set vb t_vb=
+
+set nocompatible
+" be able to backspace in insert mode
+set backspace=indent,eol,start
+
+" Font / colors
+colorscheme desert 
+
+" Twig template syntax
+au BufRead,BufNewFile *.tml set filetype=htmldjango
+
+"""" Don't have to press the spacebar for multi-line cmd output at start-up.
+:autocmd FileReadPre,BufReadPre   * set cmdheight=4
+:autocmd FileReadPost,BufReadPost * set cmdheight=3
+
+
+"Explorer should list file date and size.
+let g:explDetailedList=1
+"Explorer should list directories mixed in with file names.
+let g:explDirsFirst=0
+
+set iskeyword=a-z,A-Z,48-57,_
+
+
+:nmap <silent> TR :set expandtab<CR>:%retab!<CR>
+:nmap <silent> TT :set noexpandtab<CR>:%retab!<CR>
+
+
+" Page through a file like a pager.
+set pastetoggle=<F8>
+
+" Format (line wrap) a paragraph.
+map F gq}
+
+" An easier mapping for "redo".
+map U <C-R>
+
+
+map <F2> :tj
+map t :tj /
+
+" Show buffer list.
+map + :buffers<CR>
+
+" Cycle forward and backward through buffers.
+map <C-N> :bn<CR>
+map <C-P> :bp<CR>
+
+"map <C-N> :tabnext<CR>
+"map <C-P> :tabprev<CR>
+
+" Delete a buffer.
+map <M-C-W> :bd<CR>
+
+
+" Turns of highsearch, once I've found what I'm looking for.
+map ` :nohls<C-M>
+
+cnoremap <Tab> <C-L><C-D>
+
+" Tag name completion
+inoremap <C-]> <C-X><C-]>
+
+" File name completion
+inoremap <C-F> <C-X><C-F>
+
+inoremap <C-D> <C-X><C-D>
+inoremap <C-L> <C-X><C-L>
+
+" Make p in Visual mode replace the selected text with the "" register.
+vnoremap p <Esc>:let current_reg = @"<CR>gvs<C-R>=current_reg<CR><Esc>
+
+
+set shellcmdflag=-ic
+
+"svn shortcuts
+command! SL silent call s:RunShellCommand("svn log ".expand("%:p"))                                                                                                                                                                           
+command! SDP silent call s:RunShellCommand("svn diff -x -w -r BASE:PREV ".expand("%:p")) | set filetype=diff
+command! SB silent call s:RunShellCommand("svn blame ".expand("%:p"))
+vmap gl :<C-U>silent Shell svn blame <C-R>=expand("%:P") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
+
+
+"delete the buffer; keep windows; create a scratch buffer if no buffers left
+" credit: http://vim.wikia.com/wiki/Deleting_a_buffer_without_closing_the_window
+function s:Kwbd(kwbdStage)
+  if(a:kwbdStage == 1)
+    if(!buflisted(winbufnr(0)))
+      bd!
+      return
+    endif
+    let s:kwbdBufNum = bufnr("%")
+    let s:kwbdWinNum = winnr()
+    windo call s:Kwbd(2)
+    execute s:kwbdWinNum . 'wincmd w'
+    let s:buflistedLeft = 0
+    let s:bufFinalJump = 0
+    let l:nBufs = bufnr("$")
+    let l:i = 1
+    while(l:i <= l:nBufs)
+      if(l:i != s:kwbdBufNum)
+        if(buflisted(l:i))
+          let s:buflistedLeft = s:buflistedLeft + 1
+        else
+          if(bufexists(l:i) && !strlen(bufname(l:i)) && !s:bufFinalJump)
+            let s:bufFinalJump = l:i
+          endif
+        endif
+      endif
+      let l:i = l:i + 1
+    endwhile
+    if(!s:buflistedLeft)
+      if(s:bufFinalJump)
+        windo if(buflisted(winbufnr(0))) | execute "b! " . s:bufFinalJump | endif
+      else
+        enew
+        let l:newBuf = bufnr("%")
+        windo if(buflisted(winbufnr(0))) | execute "b! " . l:newBuf | endif
+      endif
+      execute s:kwbdWinNum . 'wincmd w'
+    endif
+    if(buflisted(s:kwbdBufNum) || s:kwbdBufNum == bufnr("%"))
+      execute "bd! " . s:kwbdBufNum
+    endif
+    if(!s:buflistedLeft)
+      set buflisted
+      set bufhidden=delete
+      set buftype=nofile
+      setlocal noswapfile
+    endif
+  else
+    if(bufnr("%") == s:kwbdBufNum)
+      let prevbufvar = bufnr("#")
+      if(prevbufvar > 0 && buflisted(prevbufvar) && prevbufvar != s:kwbdBufNum)
+        b #
+      else
+        bn
+      endif
+    endif
+  endif
+endfunction
+
+command! Kwbd call <SID>Kwbd(1)
+nnoremap <silent> <Plug>Kwbd :<C-u>Kwbd<CR>
+
+" Create a mapping (e.g. in your .vimrc) like this:
+nmap Q <Plug>Kwbd
