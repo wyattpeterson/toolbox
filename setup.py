@@ -8,40 +8,26 @@ import shutil
 
 
 def install_dotfile(dotfile):
-    home = os.path.expanduser("~")
-    toolbox = os.path.join(home, 'toolbox')
+    destination = os.path.expanduser("~/.%s" % os.path.basename(dotfile))
+    print "Copying %s to %s" % (dotfile, destination)
+    shutil.copyfile(dotfile, destination)
 
-    print "Installing %s" % dotfile
-    destination = os.path.join(home, ".%s" % dotfile)
-    shutil.copyfile(
-        os.path.join(toolbox, "dotfiles", dotfile), 
-        destination
-    )
+def install_dotfiles(repo):
+    dotfiles_dir = os.path.join(repo, 'dotfiles')
+    dotfiles = [os.path.join(dotfiles_dir, dotfile) for dotfile in os.listdir(dotfiles_dir)]
+    map(install_dotfile, dotfiles)
+        
+def install_vim(repo):
+    src = os.path.join(repo, 'vim')
+    dst = os.path.expanduser("~/.vim")
+    print "Copying %s to %s" % (src, dst)
+    shutil.copytree(src,dst)
 
-def install_dotfiles():
-    home = os.path.expanduser("~")
-    toolbox = os.path.join(home, 'toolbox')
-    map(install_dotfile, os.listdir(os.path.join(toolbox, 'dotfiles')) )
-
-def install_toolbox():
-    home = os.path.expanduser("~")
-    toolbox = os.path.join(home, 'toolbox')
-
-    print "Checking Toolbox Installation"
-    if os.path.isdir(toolbox) is False:
-        print "Installing Toolbox"
-        check_call(['git', 'clone', 'https://github.com/wpeterson328/toolbox.git', toolbox])
 
 def main():
-    home = os.path.expanduser("~")
-    toolbox = os.path.join(home, 'toolbox')
-
-    install_toolbox()
-    install_dotfiles()
-    
-    #next copy entire vim folder into .vim
-
-
+    repo=os.path.dirname(os.path.realpath(__file__))
+    install_dotfiles(repo)
+    install_vim(repo)
     return 0
 
 if __name__ == '__main__':
