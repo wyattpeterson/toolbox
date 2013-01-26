@@ -1,7 +1,7 @@
 execute pathogen#infect()
 
 syntax on
-
+let mapleader=","
 
 highlight Search   ctermfg=NONE  ctermbg=magenta guifg=NONE    guibg=yellow
 
