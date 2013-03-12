@@ -28,7 +28,7 @@ alias lboot='last | grep boot'
 alias svndv='svn diff | view -'
 alias gitdv='git diff | view -'
 alias gitst='git status'
-alias gitup='git pull'
+alias gitup='git pull --rebase'
 alias gitci='git commit -a'
 
 
