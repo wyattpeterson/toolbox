@@ -8,6 +8,8 @@ ubuntu server
 
 xserver-xorg
 lightdm-gtk-greeter
+xmonad package
+xterm
 
 *********
 
