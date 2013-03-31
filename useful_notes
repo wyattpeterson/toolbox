@@ -3,7 +3,13 @@ https://github.com/sgerrand/xfce4-terminal-colors-solarized
 
 ####################
 
+*************
+ubuntu server
 
+xserver-xorg
+lightdm-gtk-greeter
+
+*********
 
 ## Use lynx and wget to download all files on a webpage
 lynx --dump http://www.rabbitmq.com/releases/rabbitmq-server/v2.8.4/ | grep www.rabbitmq.com/releases | awk '{print $2}' > files
