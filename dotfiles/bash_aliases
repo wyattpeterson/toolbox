@@ -79,6 +79,6 @@ vig ()
     vim +$LOCATION
 }
 
-to_unixtime() {
+from_unixtime() {
     date -d @$1
 }
