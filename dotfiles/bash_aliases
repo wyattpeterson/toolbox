@@ -78,3 +78,7 @@ vig ()
     LOCATION=`echo $1 | awk -F ':' '{print \$2,$1}'`
     vim +$LOCATION
 }
+
+to_unixtime() {
+    date -d @$1
+}
