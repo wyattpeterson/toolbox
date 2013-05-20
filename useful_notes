@@ -24,11 +24,19 @@ sudo mount //host/path /mnt/dest -o username=wpeterson,password='my_password'
 # make a basic tunnel on localhost port 80 to port 80 on host2 tunneling through host1
 ssh -L 80:host2:80 host1 
 
+## Perl
+## print regex matchgroup on command line
+perl -n -e'/(^[^:]+)/ && print "$1\n"' /etc/passwd
 
 #### VIM
 #pretty tsv columns
 :%!column -t
 
+Show character under cursor
+set statusline=%<%f%h%m%r%=%b\ 0x%B\ \ %l,%c%V\ %P
+
+turn nbsp (0xA0) into space (0x20) after copy / paste from web:
+%s/\%xA0/ /g
 
 #### Sys admin stuff:
 Get info about hard drives and raids:
@@ -38,8 +46,4 @@ hdparm -I /dev/sdb
 search hex:
 /\%x1b
 
-Show character under cursor
-set statusline=%<%f%h%m%r%=%b\ 0x%B\ \ %l,%c%V\ %P
 
-turn nbsp (0xA0) into space (0x20) after copy / paste from web:
-%s/\%xA0/ /g
