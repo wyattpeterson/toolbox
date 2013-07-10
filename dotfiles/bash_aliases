@@ -82,3 +82,7 @@ vig ()
 from_unixtime() {
     date -d @$1
 }
+
+to_unixtime() {
+    date -d $1 +%s
+}
