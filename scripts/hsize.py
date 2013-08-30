@@ -13,13 +13,15 @@ def hsize(num):
 
 def main():
     input_size = 0
-    if len(sys.argv) > 0:
+    if len(sys.argv) > 1:
         input_size = sys.argv[1]
-    else:
-        print "Need Size"
-        return 1
+        print hsize(input_size)
+        return 0
 
-    print hsize(input_size)
+    for line in sys.stdin:
+        input_size = line.strip()
+        print hsize(input_size)
+
     return 0
 
 if __name__ == '__main__':
