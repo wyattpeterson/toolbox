@@ -10,6 +10,11 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
+if [[ $(uname) == 'FreeBSD' ]];
+then
+    alias ls='ls -G'
+fi
+
 # some more ls aliases
 alias ll='ls -alhF'
 alias la='ls -AF'
@@ -25,8 +30,8 @@ alias wis='whatis -w "*" | grep'
 alias lboot='last | grep boot'
 
 #version control
-alias svndv='svn diff | view -'
-alias gitdv='git diff | view -'
+alias svndv='svn diff | vim -R -'
+alias gitdv='git diff | vim -R -'
 alias gitst='git status'
 alias gitup='git pull --rebase'
 alias gitci='git commit -a'
