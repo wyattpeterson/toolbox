@@ -21,13 +21,13 @@ alias la='ls -AF'
 alias l='ls -CF'
 
 #hadoop
-alias dfs='hadoop fs'
-alias hls='hadoop fs -ls'
+alias dfs='hdfs dfs'
 
 #misc
-alias gps='ps -ef | grep -v grep | grep'
 alias wis='whatis -w "*" | grep'
-alias lboot='last | grep boot'
+alias fix_ssh='export SSH_AUTH_SOCK=$(find /tmp/ssh-* -name agent.\* -uid $(id -u) | head -n 1)'
+alias snap='python -m snappy -c'
+alias unsnap='python -m snappy -d'
 
 #version control
 alias svndv='svn diff | vim -R -'
@@ -35,6 +35,8 @@ alias gitdv='git diff | vim -R -'
 alias gitst='git status'
 alias gitup='git pull --rebase'
 alias gitci='git commit -a'
+
+
 
 
 #######
