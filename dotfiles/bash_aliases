@@ -38,7 +38,7 @@ alias gitci='git commit -a'  #commit
 alias gitbn='git checkout -b' #branch new
 alias gitbd='git branch -d'  #branch delete
 alias gitbr='git checkout master'  #branch reset
-alias gitbs='git checkout master'  #branch switch
+alias gitbs='git checkout'  #branch switch
 alias gitbm='git merge' #branch merge
 alias gitbl='git show-branch -a --list' #branch list
 
