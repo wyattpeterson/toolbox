@@ -30,11 +30,16 @@ alias snap='python -m snappy -c'
 alias unsnap='python -m snappy -d'
 
 #version control
-alias svndv='svn diff | vim -R -'
-alias gitdv='git diff | vim -R -'
-alias gitst='git status'
-alias gitup='git pull --rebase'
-alias gitci='git commit -a'
+alias svndv='svn diff | vim -R -' #view diffs
+alias gitdv='git diff | vim -R -' #view diffs
+alias gitst='git status'  
+alias gitup='git pull --rebase' #update
+alias gitci='git commit -a'  #commit
+alias gitbn='git checkout -b' #branch new
+alias gitbd='git branch -d'  #branch delete
+alias gitbr='git checkout master'  #branch reset
+alias gitbs='git checkout master'  #branch switch
+alias gitbm='git merge' #branch merge
 
 
 
