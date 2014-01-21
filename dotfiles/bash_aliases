@@ -40,6 +40,7 @@ alias gitbd='git branch -d'  #branch delete
 alias gitbr='git checkout master'  #branch reset
 alias gitbs='git checkout master'  #branch switch
 alias gitbm='git merge' #branch merge
+alias gitbl='git show-branch -a --list' #branch list
 
 
 
