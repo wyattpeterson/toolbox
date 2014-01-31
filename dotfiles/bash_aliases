@@ -28,6 +28,9 @@ alias wis='whatis -w "*" | grep'
 alias fix_ssh='export SSH_AUTH_SOCK=$(find /tmp/ssh-* -name agent.\* -uid $(id -u) | head -n 1)'
 alias snap='python -m snappy -c'
 alias unsnap='python -m snappy -d'
+function calc() {
+    echo "$1" | bc
+}
 
 #version control
 alias svndv='svn diff | vim -R -' #view diffs
