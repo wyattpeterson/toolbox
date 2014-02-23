@@ -1,0 +1,4 @@
+#!/bin/bash 
+
+google-chrome --proxy-server="socks5://localhost:8080" --host-resolver-rules="MAP * 0.0.0.0 , EXCLUDE localhost" &
+
