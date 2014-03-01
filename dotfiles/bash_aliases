@@ -46,8 +46,6 @@ alias gitbm='git merge' #branch merge
 alias gitbl='git show-branch -a --list' #branch list
 
 
-
-
 #######
 # Searchs through files recursively. faster than ack last I tested
 # example usage: fif php,py some_function
@@ -102,3 +100,4 @@ from_unixtime() {
 to_unixtime() {
     date -d $1 +%s
 }
+alias gen_pass='openssl rand -base64 32'
