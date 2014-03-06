@@ -17,6 +17,11 @@ def install_dotfiles(repo):
     map(install_dotfile, dotfiles)
 
 def main():
+#    home = os.path.expanduser("~")
+#    bashrcd = os.path.join(home, ".bashrc.d")
+#    if not os.path.exists(bashrcd):
+#        os.makedirs(bashrcd)
+
     repo=os.path.dirname(os.path.realpath(__file__))
     install_dotfiles(repo)
     return 0
