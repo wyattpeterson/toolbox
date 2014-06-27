@@ -1,0 +1,5 @@
+[
+	
+	{ "keys": ["alt+right"], "command": "next_group" },
+	{ "keys": ["alt+left"], "command": "prev_group" },
+]
