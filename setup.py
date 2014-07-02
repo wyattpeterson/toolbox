@@ -24,6 +24,13 @@ def main():
 
     repo=os.path.dirname(os.path.realpath(__file__))
     install_dotfiles(repo)
+
+#to-do install files
+#vim plugin problems
+#reload xfce4 settings without reload
+
+
+
     return 0
 
 if __name__ == '__main__':
