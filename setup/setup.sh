@@ -11,3 +11,5 @@ sudo puppet apply ~/toolbox/setup/setup.pp
 git clone https://github.com/wpeterson328/.vim.git
 ~/toolbox/setup.py
 
+
+#wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb

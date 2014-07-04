@@ -3,7 +3,8 @@ $packages = [
 "tmux",
 "vim",
 "git",
-"tree"
+"tree",
+"sensible-utils"
 ]
 
 package { $packages: ensure => "installed" }
