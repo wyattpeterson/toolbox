@@ -45,6 +45,8 @@ alias gitbs='git checkout'  #branch switch
 alias gitbm='git merge' #branch merge
 alias gitbl='git show-branch -a --list' #branch list
 
+alias txn="tmux new -s"
+
 
 #######
 # Searchs through files recursively. faster than ack last I tested
