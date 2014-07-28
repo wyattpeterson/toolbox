@@ -4,7 +4,9 @@ $packages = [
 "vim",
 "git",
 "tree",
-"sensible-utils"
+"sensible-utils",
+"curl",
+"sshfs"
 ]
 
 package { $packages: ensure => "installed" }
