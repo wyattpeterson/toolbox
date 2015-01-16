@@ -2,6 +2,8 @@
 
 #one off type stuff to be done with better automation later
 mkdir /home/wyatt/.ssh
+mkdir /home/wyatt/projects
+mkdir /home/wyatt/tmp
 cp -r ~/toolbox/config/* ~/.config
 
 git config --local user.email "wyatt.peterson@gmail.com"
