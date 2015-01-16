@@ -6,7 +6,9 @@ $packages = [
 "tree",
 "sensible-utils",
 "curl",
-"sshfs"
+"sshfs",
+"chromium-browser",
+"apt-transport-https"
 ]
 
 package { $packages: ensure => "installed" }
