@@ -8,7 +8,12 @@ $packages = [
 "curl",
 "sshfs",
 "chromium-browser",
-"apt-transport-https"
+"apt-transport-https",
+"python-pip",
+"build-essential",
+"libpython-dev",
+"libyaml-dev",
+"python-yaml"
 ]
 
 package { $packages: ensure => "installed" }
