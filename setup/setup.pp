@@ -17,3 +17,14 @@ $packages = [
 ]
 
 package { $packages: ensure => "installed" }
+
+
+$pip_packages = [
+    "boto",
+    "awscli",
+]
+
+package { $pip_packages:
+    ensure => "latest",
+    provider => pip,
+}
