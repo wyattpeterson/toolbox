@@ -13,5 +13,5 @@ apt-get -qq update
 apt-get -y -qq install puppet
 
 
-#echo 'DOCKER_OPTS="--insecure-registry registry.edmodo.io"' >> /etc/default/docker
+
 
