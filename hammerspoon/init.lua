@@ -77,7 +77,7 @@ hs.hotkey.bind({"cmd"}, "Down", function()
   win:setFrame(f)
 end)
 
-
+--full screen
 hs.hotkey.bind({"cmd", "alt", "ctrl"}, "m", function()
   local win = hs.window.focusedWindow()
   local f = win:frame()
