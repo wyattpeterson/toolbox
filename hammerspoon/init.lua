@@ -9,9 +9,9 @@ local mash_shift = {"ctrl", "alt", "shift"}
 
 -- Launch applications
 hs.hotkey.bind(mash_app, 't', function () 
-  hs.application.launchOrFocus("iTerm") 
-  local chrome = hs.appfinder.appFromName("iTerm")
-  chrome:selectMenuItem({"Shell", "New Window"})
+  hs.application.launchOrFocus("iTerm2") 
+  local iterm = hs.appfinder.appFromName("iTerm2")
+  iterm:selectMenuItem({"Shell", "New Window"})
 end)
 
 --launch new chrome window
@@ -77,7 +77,7 @@ hs.hotkey.bind({"cmd"}, "Down", function()
   win:setFrame(f)
 end)
 
---full screen
+
 hs.hotkey.bind({"cmd", "alt", "ctrl"}, "m", function()
   local win = hs.window.focusedWindow()
   local f = win:frame()
